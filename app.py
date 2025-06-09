@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import re
+import os
 from langdetect import detect
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from nltk.corpus import stopwords
@@ -12,6 +13,9 @@ app = Flask(__name__)
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 # Load stopwords dan stemmer
+import nltk
+nltk.download('stopwords')
+
 stopwords_id = set(stopwords.words('indonesian'))
 stopwords_en = set(stopwords.words('english'))
 stop_words = stopwords_id.union(stopwords_en)
@@ -42,4 +46,5 @@ def get_keywords():
     return jsonify({"keywords": keywords})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
