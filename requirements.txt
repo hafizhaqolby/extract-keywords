@@ -1,0 +1,6 @@
+Flask
+joblib
+scikit-learn
+nltk
+langdetect
+Sastrawi
