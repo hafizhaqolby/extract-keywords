@@ -10,7 +10,8 @@ from nltk.corpus import stopwords
 app = Flask(__name__)
 
 # Load vectorizer
-vectorizer = joblib.load("nlp_assets.pkl")
+assets = joblib.load("nlp_assets.pkl")
+vectorizer = assets["vectorizer"]
 
 # Load stopwords dan stemmer
 import nltk
